@@ -1,6 +1,6 @@
 import csv
 
-with open('COVID-RKI.csv', 'r') as f:
+with open('COVID_RKI.csv', 'r') as f:
     reader = csv.reader(f,delimiter = ";")
     data = list(reader)
     row_count = len(data)
