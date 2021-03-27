@@ -2,7 +2,9 @@ import csv
 import requests
 import os
 from latest_data import *
+from datetime import date, datetime
 
+today = str(date.today().strftime('%d.%m.%Y'))
 CSV_URL = 'https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Projekte_RKI/Nowcasting_Zahlen_csv.csv?__blob=publicationFile'
 
 with requests.Session() as s:
@@ -18,5 +20,9 @@ with requests.Session() as s:
             #print(row)
         else:
             break
+
 os.system('python latest_data.py')
 print('Data has been refreshed. The latest data is from: ' + latest)
+print('Today is: ' + today)
+no_data_since = datetime.strptime(today, '%d.%m.%Y').date() - datetime.strptime(latest, '%d.%m.%Y').date()
+print('No new data for: ' + str(no_data_since))
